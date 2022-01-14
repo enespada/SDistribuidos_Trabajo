@@ -1,0 +1,21 @@
+Mi trabajo tiene una estructura cliente-servidor, en la que el servidor ejerce como nube de almacenamiento de los datos de sus clientes.
+El servidor tiene una lista de clientes, de modo que cuando uno de ellos se conecta al servidor puede manipular sus archivos.
+Para conectarse, el cliente debe mandar su usuario y contrasegna al servidor, lo cual es bastante poco seguro (al igual que el hecho de que el 
+servidor tenga almacenadas las contrasegnas de sus clientes sin hacer uso de un hash siquiera), pero el cometido del trabajo es otro distinto.
+
+En cuanto a las acciones que el cliente puede realizar en sus archivos tenemos 3 posibles opciones:
+1. Subir o cargar. El cliente puede almacenar TODOS los datos que tenga en la carpeta "Cargar" (u otra, bastaria con cambiar la ruta) en la nube. 
+Esto tiene una peculiaridad. Si intenta subir una carpeta o archivo con el mismo nombre que alguna carpeta o archivo respectivamente en la nube, el contenido se sobreescribira.
+2. Descargar. Esta funcion permitira al cliente descargar TODO el contenido de la nube en la carpeta "Descargar" (u otra, bastaria con cambiar la ruta).
+No se puede escoger que carpeta o archivo descargar en concreto. Esto se debe a que el cliente no puede ver el contenido en su nube directamente. Para verlo
+tendria que descargarlo, y entonces si podria visualizarlo.
+3. Eliminar. Permite eliminar TODO el contenido de la nube. Al igual que con la opcion descargar, como el cliente no puede ver el contenido inicialmente en la nube, 
+no podra elegir que carpeta o archivo eliminar, por eso esta accion tiene este funcionamiento.
+
+Observacion:
+1. Inicialmente intente hacer una pequegna interfaz grafica que permitiera ver el contenido de la nube, y asi poder seleccionar concretamente un archivo o carpeta
+para descargar o eliminar, pero debido a la falta de tiempo (por circunstancias personales) no me fue posible terminar esa otra opcion y tuve que optar por la 
+anteriormente expuesta. En el package NoUtilizado se encuentran algunas de esas clases desestimadas, pero no tienen influencia en el funcionamiento del programa.
+A pesar de la falta de ciertas opciones muy comodas para el usuario, la nube es completamente operativa.
+2. En esta nube no pueden introducirse carpetas o archivos que contengan los caracteres "." o " " en su nombre. Se pueden sustituir los " " por "_".
+Ejemplo: no podemos intentar meter la carpeta "prueba.algo" o el archivo "nuevo word".
