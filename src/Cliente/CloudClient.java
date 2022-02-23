@@ -3,7 +3,7 @@
  */
 package Cliente;
 
-import java.io.DataInputStream;  
+import java.io.DataInputStream;   
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -214,7 +214,7 @@ public class CloudClient {
 			String dato = dis.readLine();
 			String [] peticion;
 			byte [] buff;
-			int tam,numBytesLeidos,cont;
+			int tam;
 			File f;
 			
 			while(!dato.equals("")) {
@@ -237,11 +237,9 @@ public class CloudClient {
 						
 						// Ahora ya creamos el archivo
 						try (FileOutputStream fosFich =  new FileOutputStream(this.rutaDescargar+"/"+peticion[1])) {
-							cont = 0;
-							while(cont<=tam-1) {
-								fosFich.write(dis.read());
-								cont++;
-							}
+							buff = new byte[tam];
+							dis.readFully(buff);
+							fosFich.write(buff);
 	
 						} catch (Exception e) {
 							// TODO: handle exception
@@ -285,9 +283,8 @@ public class CloudClient {
 	public static void main(String[] args) {
 		String host = "192.168.56.1";
 //		host = "192.168.1.80";
-		String user = "peperez";
-		String pwd = "yyyy";
-		CloudClient cc = new CloudClient(host,user,pwd);
+		CloudClient cc = new CloudClient(host,"enespada","xxxx");
+//		CloudClient cc = new CloudClient(host,"peperez","yyyy");
 	}
 	
 }
