@@ -198,11 +198,7 @@ public class AtenderPeticion implements Runnable{
 							try (FileOutputStream fosFich =  new FileOutputStream(this.rutaNube+"/"+user+"/"+peticion[1]);) {
 								// Forma 1: la buena. Leemos todos los bytes que debemos directamente y los metemos en un byte [].
 								buff = new byte[tam];
-<<<<<<< HEAD
 								dis.readFully(buff);  
-=======
-								dis.readFully(buff);
->>>>>>> e13ba39be3262845d80dbf8605648b46411aae36
 								fosFich.write(buff);
 								   
 								// Forma 2: funciona mal porque se lee basura por medio
@@ -213,11 +209,7 @@ public class AtenderPeticion implements Runnable{
 //									numBytesLeidos = dis.read(buff);
 //									System.out.println(peticion[1]+" numbytes: "+numBytesLeidos);
 //									if(totalBytesLeidos + numBytesLeidos > tam) {
-<<<<<<< HEAD
 //										fosFich.write(buff, 0, tam - totalBytesLeidos);
-=======
-//										fosFich.write(buff, 0, tam-totalBytesLeidos);
->>>>>>> e13ba39be3262845d80dbf8605648b46411aae36
 //										System.out.println(peticion[1]+" tam-tot: "+(tam-totalBytesLeidos));
 //									}
 //									else {
@@ -279,3 +271,4 @@ public class AtenderPeticion implements Runnable{
 		}
 	}
 }
+
