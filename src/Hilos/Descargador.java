@@ -1,11 +1,9 @@
 /*
- * Enrique Espada Calvo 
+ * Enrique Espada Calvo  
  */
 package Hilos;
 
-import java.io.DataInputStream; 
 import java.io.DataOutputStream;
-import java.io.FileInputStream;
 import java.io.RandomAccessFile;
 import java.net.Socket;
 import java.util.concurrent.CyclicBarrier;
@@ -43,13 +41,10 @@ public class Descargador extends Thread {
 			dos = new DataOutputStream(this.s.getOutputStream());
 			
 			this.raf = new RandomAccessFile(this.ruta, "r");
-//			System.out.println(byteIni);
-//			System.out.println(byteFin);
 			raf.seek(ini);
 			byte [] buff = new byte[fin-ini+1];
 			raf.readFully(buff);
 			dos.write(buff);
-//			dos.flush();
 			
 			barrera.await();
 

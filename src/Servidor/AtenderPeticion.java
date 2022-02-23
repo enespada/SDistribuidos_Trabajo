@@ -1,9 +1,9 @@
 /*
- * Enrique Espada Calvo 
+ * Enrique Espada Calvo  
  */
 package Servidor;
 
-import java.io.DataInputStream; 
+import java.io.DataInputStream;  
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -171,7 +171,7 @@ public class AtenderPeticion implements Runnable{
 				String dato = dis.readLine();
 				String [] peticion, listaFich;
 				byte [] buff;
-				int tam,numBytesLeidos,cont;
+				int tam;
 				File f, faux;
 				
 				while(dato!=null) {
@@ -196,23 +196,35 @@ public class AtenderPeticion implements Runnable{
 							
 							// Ahora ya creamos el archivo
 							try (FileOutputStream fosFich =  new FileOutputStream(this.rutaNube+"/"+user+"/"+peticion[1]);) {
+								// Forma 1: la buena. Leemos todos los bytes que debemos directamente y los metemos en un byte [].
+								buff = new byte[tam];
+								dis.readFully(buff);
+								fosFich.write(buff);
+								   
+								// Forma 2: funciona mal porque se lee basura por medio
 //								int totalBytesLeidos = 0;
+//								int numBytesLeidos = 0;
 //								buff = new byte[tam];
-//								numBytesLeidos = dis.read(buff);
-//								totalBytesLeidos = totalBytesLeidos + numBytesLeidos;
-//								fosFich.write(buff,0,numBytesLeidos);
-//								while(totalBytesLeidos!=tam) {	
-//									System.out.println("numbytes: "+numBytesLeidos);
+//								while(totalBytesLeidos < tam) {										
 //									numBytesLeidos = dis.read(buff);
-//									fosFich.write(buff,0,numBytesLeidos);
+//									System.out.println(peticion[1]+" numbytes: "+numBytesLeidos);
+//									if(totalBytesLeidos + numBytesLeidos > tam) {
+//										fosFich.write(buff, 0, tam-totalBytesLeidos);
+//										System.out.println(peticion[1]+" tam-tot: "+(tam-totalBytesLeidos));
+//									}
+//									else {
+//										fosFich.write(buff, 0, numBytesLeidos);
+//									}
+//									totalBytesLeidos = totalBytesLeidos + numBytesLeidos;
+//									System.out.println(peticion[1]+" totalbytes: "+totalBytesLeidos);
 //								}
-//								System.out.println("total: "+totalBytesLeidos);
 								
-								cont = 0;
-								while(cont<=tam-1) {
-									fosFich.write(dis.read());
-									cont++;
-								}
+								// Forma 3: leer byte a byte. Funciona pero es muy lento
+//								int cont = 0;
+//								while(cont<=tam-1) {
+//									fosFich.write(dis.read());
+//									cont++;
+//								}
 		
 							} catch (Exception e) {
 								// TODO: handle exception
